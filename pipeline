@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage("Build") {
           steps {
-                checkout scm
                 def dockerfile = 'Dockerfile'
                 def customImage = docker.build("jenkins-assignment:v1", "-f ${dockerfile} ./stages/build")
              }
