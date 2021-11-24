@@ -3,14 +3,13 @@ pipeline {
     stages {
         stage("Build") {
           steps {
-                def dockerfile = 'Dockerfile'
-                def customImage = docker.build("jenkins-assignment:v1", "-f ${dockerfile} ./stages/build")
+                echo "hello"
              }
         }
         stage("Push") {
            steps {
             sh '''
-               echo "Push"
+               python3 --version
                '''
            }
         }
