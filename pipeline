@@ -2,11 +2,15 @@ pipeline {
     agent { dockerfile true }
     environment {
         GCR_CREDENTIALS = credentials('My First Project')
+        PROJECT_ID = 'My First Project'
+        CLUSTER_NAME = 'autopilot-cluster-1'
+        REGION = 'asia-south1'
     }
     stages {
         stage("Build") {
           steps {
               sh '''
+                 docker image list
                  echo "Success"
                  '''
              }
@@ -14,12 +18,7 @@ pipeline {
         stage("Push") {
            steps {
             sh '''
-               withCredentials([GCR_CREDENTIALS(credentialsId: 'key-sa', variable: 'GC_KEY')]) {
-               sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
-               sh("gcloud container clusters get-credentials prod --zone asia-south1-c --project compact-record-332904")
-               docker tag jenkins-assignment:v1 asia.gcr.io/compact-record-332904/jenkins-assignment:v1
-               cat "$GCR_CREDENTIALS" > credentials.json
-               }
+               echo "PUSH"
                '''
            }
         }
