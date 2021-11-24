@@ -5,7 +5,7 @@ pipeline {
         stage("Build") {
           steps {
              sh '''
-               ./stages/build/build.sh
+               Docker build -t jenkins-assignment:v1 ./stages/build/
                '''
              }
         }
