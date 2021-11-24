@@ -5,7 +5,7 @@ pipeline {
         stage("Build") {
           steps {
              sh '''
-               echo "Build"
+               ./stages/build/build.sh
                '''
              }
         }
