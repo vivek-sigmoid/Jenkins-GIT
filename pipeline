@@ -3,11 +3,9 @@ pipeline {
     stages {
         stage("Build") {
           steps {
-             node {
-                    checkout scm
-                    def dockerfile = 'Dockerfile'
-                    def customImage = docker.build("jenkins-assignment:v1", "-f ${dockerfile} ./stages/build")
-                   }
+                checkout scm
+                def dockerfile = 'Dockerfile'
+                def customImage = docker.build("jenkins-assignment:v1", "-f ${dockerfile} ./stages/build")
              }
         }
         stage("Push") {
