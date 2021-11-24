@@ -1,11 +1,5 @@
 pipeline {
     agent { dockerfile true }
-    environment {
-        GCR_CREDENTIALS = credentials('My First Project')
-        PROJECT_ID = 'My First Project'
-        CLUSTER_NAME = 'autopilot-cluster-1'
-        REGION = 'asia-south1'
-    }
     stages {
         stage("Build") {
           steps {
