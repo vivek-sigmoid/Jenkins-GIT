@@ -1,15 +1,24 @@
 pipeline {
     agent { dockerfile true }
+    environment {
+        GCR_CREDENTIALS = credentials('My First Project')
+    }
     stages {
         stage("Build") {
           steps {
-                echo "hello"
+              sh '''
+                 echo "Success"
+                 '''
              }
         }
         stage("Push") {
            steps {
             sh '''
-               python3 --version
+               docker tag jenkins-assignment:v1 asia.gcr.io/compact-record-332904/jenkins-assignment:v1
+               cat "$GCR_CREDENTIALS" > credentials.json
+               docker login -u _json_key -p "$(cat credentials.json)" https://asia.gcr.io
+               docker push asia.gcr.io/compact-record-332904/jenkins-assignment:v1
+               docker logout https://asia.gcr.io
                '''
            }
         }
