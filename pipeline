@@ -10,9 +10,11 @@ pipeline {
                 git 'https://github.com/vivek-sigmoid/Jenkins-GIT.git'
             }
         }
-        stage('Build image') {
+        stage('Build') {
             steps {
-                app = docker.build("https://asia.gcr.io/compact-record-332904/jenkins-assignment")
+                script {
+                    app = docker.build("https://asia.gcr.io/compact-record-332904/jenkins-assignment")
+                    }
                 }
         }
         stage('Push image') {
