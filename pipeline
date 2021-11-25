@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
-                        app.push("v1")
+                        app.push("latest")
                     }
                 }
             }
