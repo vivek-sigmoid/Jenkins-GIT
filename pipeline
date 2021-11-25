@@ -19,14 +19,16 @@ pipeline {
         }
         stage('Push image') {
             steps {
-                docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
-                    app.push("v1")
+                script {
+                    docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
+                        app.push("v1")
+                    }
                 }
             }
         }
         stage('Cleaning up') {
             steps {
-                sh "docker rmi $registry:v1"
+                sh script: "docker rmi $registry:v1"
             }
         }
     }
