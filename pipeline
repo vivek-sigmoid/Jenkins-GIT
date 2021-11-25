@@ -4,7 +4,6 @@ pipeline {
         stage("Build") {
           steps {
               sh '''
-                 docker image list
                  echo "Success"
                  '''
              }
@@ -12,7 +11,7 @@ pipeline {
         stage("Push") {
            steps {
             sh '''
-               echo "PUSH"
+               python3 --version
                '''
            }
         }
