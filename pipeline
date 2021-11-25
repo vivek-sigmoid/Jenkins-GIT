@@ -1,26 +1,28 @@
 pipeline {
-    agent { dockerfile true }
+    environment {
+        registry = "jenkins-assignment"
+        dockerImage = ''
+    }
+    agent any
     stages {
-        stage("Build") {
-          steps {
-              sh '''
-                 echo "Success"
-                 '''
-             }
+        stage('Cloning our Git') {
+            steps {
+                git 'https://github.com/vivek-sigmoid/Jenkins-GIT.git'
+            }
         }
-        stage("Push") {
-           steps {
-            sh '''
-               python3 --version
-               '''
-           }
+        stage('Build image') {
+            app = docker.build("https://asia.gcr.io/compact-record-332904/jenkins-assignment")
         }
-        stage("Deploy") {
-         steps {
-            sh '''
-               echo "Deploy"
-               '''
-           }
+        stage('Push image') {
+            docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
+                app.push("v1")
+            }
+        }
+        stage('Cleaning up') {
+            steps {
+                sh "docker rmi $registry:v1"
+            }
         }
     }
 }
+
