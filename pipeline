@@ -1,14 +1,13 @@
 pipeline {
     environment {
         registry = "jenkins-assignment"
-        dockerImage = ''
     }
     agent any
     stages {
         stage('Build') {
             steps {
                 script {
-                    app = docker.build("compact-record-332904/jenkins-assignment" + ":v1")
+                    DockerImage = docker.build("compact-record-332904/jenkins-assignment" + ":v1")
                     }
                 }
         }
@@ -16,14 +15,14 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://asia.gcr.io', 'My First Project') {
-                        app.push("v1")
+                        DockerImage.push("v1")
                     }
                 }
             }
         }
         stage('Cleaning up') {
             steps {
-                sh script: "docker rmi $registry:v1"
+                sh script: "docker rmi jenkins-assignment:v1"
             }
         }
     }
