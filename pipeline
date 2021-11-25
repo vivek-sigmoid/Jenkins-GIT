@@ -15,7 +15,7 @@ pipeline {
         stage('Push image') {
             steps {
                 script {
-                    docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
+                    docker.withRegistry('https://asia.gcr.io', 'My First Project') {
                         app.push("latest")
                     }
                 }
