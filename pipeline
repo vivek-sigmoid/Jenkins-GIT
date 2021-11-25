@@ -5,11 +5,6 @@ pipeline {
     }
     agent any
     stages {
-        stage('Cloning our Git') {
-            steps {
-                git 'https://github.com/vivek-sigmoid/Jenkins-GIT.git'
-            }
-        }
         stage('Build') {
             steps {
                 script {
