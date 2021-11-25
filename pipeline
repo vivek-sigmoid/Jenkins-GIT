@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    app = docker.build("https://asia.gcr.io/compact-record-332904/jenkins-assignment")
+                    app = docker.build("compact-record-332904/jenkins-assignment")
                     }
                 }
         }
