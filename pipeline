@@ -11,11 +11,15 @@ pipeline {
             }
         }
         stage('Build image') {
-            app = docker.build("https://asia.gcr.io/compact-record-332904/jenkins-assignment")
+            steps {
+                app = docker.build("https://asia.gcr.io/compact-record-332904/jenkins-assignment")
+                }
         }
         stage('Push image') {
-            docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
-                app.push("v1")
+            steps {
+                docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
+                    app.push("v1")
+                }
             }
         }
         stage('Cleaning up') {
