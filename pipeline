@@ -9,7 +9,7 @@ pipeline {
                 script {
                     DockerImage = docker.build("compact-record-332904/jenkins-assignment" + ":v1")
                     docker.withRegistry('https://asia.gcr.io/', 'gcr:My First Project') {
-                        DockerImage.push("v1")
+                        DockerImage.push()
                     }
                 }
         }
@@ -21,4 +21,3 @@ pipeline {
         }
     }
 }
-
