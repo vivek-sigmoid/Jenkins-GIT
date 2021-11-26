@@ -4,21 +4,15 @@ pipeline {
     }
     agent any
     stages {
-        stage('Build') {
+        stage('Build and Push') {
             steps {
                 script {
                     DockerImage = docker.build("compact-record-332904/jenkins-assignment" + ":v1")
-                    }
-                }
-        }
-        stage('Push image') {
-            steps {
-                script {
                     docker.withRegistry('https://asia.gcr.io/', 'gcr:My First Project') {
                         DockerImage.push("v1")
                     }
                 }
-            }
+        }
         }
         stage('Cleaning up') {
             steps {
