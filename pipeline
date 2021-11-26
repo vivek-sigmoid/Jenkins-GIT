@@ -4,6 +4,18 @@ pipeline {
     }
     agent any
     stages {
+        stage('login to gcr') {
+            steps {
+            withCredentials([file(My First Project: 'gcr-private-repo-reader', variable: 'GC_KEY')]){
+                sh '''
+                    chmod 600 $GC_KEY
+                    cat $GC_KEY | docker login -u _json_key --password-stdin https://asia.gcr.io
+
+                    docker ps
+                '''
+                }
+            }
+        }
         stage('Build and Push') {
             steps {
                 script {
