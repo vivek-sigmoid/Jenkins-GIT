@@ -15,10 +15,9 @@ pipeline {
         stage('Push') {
             steps{
                 sh script: '''
-                cat "$GCR_CREDENTIALS" > credentials.json
-                docker login -u _json_key -p "$(cat credentials.json)" https://gcr.io
-                docker push asia.gcr.io/compact-record-332904/jenkins-assignment:v1
-                docker logout https://gcr.io
+                docker.withRegistry('https://asia.gcr.io', 'gcr:My First Project') {
+                    customImage.push()
+                    }
                 '''
             }
         }
