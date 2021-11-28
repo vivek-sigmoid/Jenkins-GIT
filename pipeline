@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "jenkins-assignment"
     }
-    agent docker
+    agent any
     stages {
         stage('Build') {
             steps {
