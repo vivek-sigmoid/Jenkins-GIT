@@ -13,9 +13,7 @@ pipeline {
         }
         stage('Push') {
             steps{
-                script {
-                    docker ps
-                }
+                sh script: "docker ps"
             }
         }
         stage('Cleaning up') {
