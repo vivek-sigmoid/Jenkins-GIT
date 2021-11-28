@@ -15,10 +15,10 @@ pipeline {
         stage('Push') {
             steps{
                 sh script: '''
-                cat "GCR_CREDENTIALS" > login.json
-                docker login -u _json_key -p "$(cat login.json)" https://asia.gcr.io
-                docker push asia.gcr.io/compact-record-332904/jenkins-assignment:v1
-                docker logout https://asia.gcr.io
+                withCredentials([file(GCR_CREDENTIALS: 'key-sa', variable: 'GC_KEY')]) {
+                sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
+                sh("gcloud container clusters get-credentials prod --zone asia-south1-a --project compact-record-332904")
+                }
                 '''
             }
         }
