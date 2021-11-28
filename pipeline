@@ -1,6 +1,7 @@
 pipeline {
     environment {
         registry = "jenkins-assignment"
+        GCR_CREDENTIALS = credentials('My First Project')
     }
     agent any
     stages {
@@ -14,8 +15,10 @@ pipeline {
         stage('Push') {
             steps{
                 sh script: '''
-                docker ps
-                docker ps
+                cat "$GCR_CREDENTIALS" > credentials.json
+                docker login -u _json_key -p "$(cat credentials.json)" https://asia.gcr.io
+                docker push gcr.io/compact-record-332904/jenkins-assignment:v1
+                docker logout https://asia.gcr.io
                 '''
             }
         }
