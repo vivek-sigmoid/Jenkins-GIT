@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "jenkins-assignment"
-        GCR_CREDENTIALS = credentials('gcr:My First Project')
+        GCR_CREDENTIALS = credentials('My First Project')
     }
     agent any
     stages {
