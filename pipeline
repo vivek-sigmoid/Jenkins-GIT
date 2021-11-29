@@ -16,7 +16,8 @@ pipeline {
             steps{
                 sh script: '''
                 cat "$GCR_CRED" > credentials.json
-                gcloud auth login --cred-file=credentials.json
+                gcloud auth activate-service-account gcr3-779@compact-record-332904.iam.gserviceaccount.com --key-file=credentials.json
+
                 }
                 '''
             }
