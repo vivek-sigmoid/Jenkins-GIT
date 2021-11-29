@@ -15,9 +15,7 @@ pipeline {
         stage('Push') {
             steps{
                 sh script: '''
-                withCredentials([file(GCR_CREDENTIALS: 'key-sa', variable: 'GC_KEY')]) {
-                sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
-                sh("gcloud container clusters get-credentials prod --project compact-record-332904")
+                gcloud auth login --cred-file=GCR_credentials
                 }
                 '''
             }
