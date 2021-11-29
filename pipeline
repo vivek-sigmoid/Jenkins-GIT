@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "jenkins-assignment"
-        GCR_CREDENTIALS = credentials('credentials')
+        GCR_CREDENTIALS = credentials('My First Project')
     }
     agent any
     stages {
@@ -15,7 +15,8 @@ pipeline {
         stage('Push') {
             steps{
                 sh script: '''
-                gcloud auth login --cred-file=GCR_credentials
+                cat "$GCR_CRED" > credentials.json
+                gcloud auth login --cred-file=credentials.json
                 }
                 '''
             }
