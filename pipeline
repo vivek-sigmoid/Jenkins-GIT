@@ -17,10 +17,8 @@ pipeline {
                 sh script: '''
                 withCredentials([file(credentialsId: 'GCR_CREDENTIALS', variable: 'GC_KEY')]){
                 sh '''
-                    chmod 666 $GC_KEY
-                    cat $GC_KEY | docker login -u _json_key --password-stdin https://asia.gcr.io
-
-                    docker ps
+                    pwd
+                    ls
                 }
                 '''
             }
