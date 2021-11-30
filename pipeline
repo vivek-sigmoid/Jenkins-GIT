@@ -22,9 +22,9 @@ pipeline {
         } */
         stage('Deployment') {
             steps {
-                script {
+                sh '''
                     gcloud compute instances list
-                    }
+                   '''
             }
         }
         stage('Cleaning up') {
