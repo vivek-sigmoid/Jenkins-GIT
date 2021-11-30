@@ -23,7 +23,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh '''
-                    cat "$GCR_CRED" > credentials.json
+                    echo "$GCR_CRED" > credentials.json
                     gcloud auth activate-service-account gcr3-779@compact-record-332904.iam.gserviceaccount.com --key-file=credentials.json
                     gcloud config set project compact-record-332904
                     gcloud container clusters get-credentials autopilot-cluster-1 --zone asia-south1
