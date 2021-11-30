@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        GCR_CRED = credentials('MyProject')
+    }
     stages {
         stage('Build') {
             steps {
@@ -11,8 +14,7 @@ pipeline {
         stage('Push') {
             steps{
                 sh '''
-                    gcloud auth activate-service-account gcr3-779@compact-record-332904.iam.gserviceaccount.com --key-file=credentials.json
-                    DockerImage.push()
+                pwd
                 '''
             }
         }
