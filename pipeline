@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GCR_CRED = credentials('MyProject')
+        GCR_CRED = credentials('gcr:MyProject')
     }
     stages {
         stage('Build') {
