@@ -14,8 +14,6 @@ pipeline {
         }
         stage('Push') {
             steps{
-                sh script: '''
-                withCredentials([file(credentialsId: 'GCR_CREDENTIALS', variable: 'GC_KEY')]){
                 sh '''
                     pwd
                     ls
