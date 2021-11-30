@@ -23,6 +23,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh '''
+                    gcloud auth activate-service-account gcr3-779@compact-record-332904.iam.gserviceaccount.com --key-file=GCR_CRED
                     gcloud config set project compact-record-332904
                     gcloud container clusters get-credentials autopilot-cluster-1 --zone asia-south1
                     kubectl create -f python-deployment.yaml
