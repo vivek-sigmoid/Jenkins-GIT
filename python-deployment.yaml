@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod-usage-info
+  labels:
+    app: pod-usage-info
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod-usage-info
+  template:
+    metadata:
+      labels:
+        app: pod-usage-info
+    spec:
+      containers:
+      - image: compact-record-332904/jenkins-assignment:v1
+        name: pod-usage-info
+        ports:
+        - containerPort: 8080
