@@ -23,7 +23,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh '''
-                    gcloud config set project 'My First Project'
+                    gcloud config set project compact-record-332904
                    '''
             }
         }
