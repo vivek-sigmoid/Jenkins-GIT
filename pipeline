@@ -22,14 +22,15 @@ pipeline {
         } */
         stage('Deployment') {
             steps {
-                sh '''
-                    echo "$GCR_CRED" > credentials.json
-                    cat credentials.json
-                    gcloud auth activate-service-account gcr3-779@compact-record-332904.iam.gserviceaccount.com --key-file=credentials.json
-                    gcloud config set project compact-record-332904
-                    gcloud container clusters get-credentials autopilot-cluster-1 --zone asia-south1
-                    kubectl create -f python-deployment.yaml
-                   '''
+                script {
+                    withCredentials([file(credentialsId: 'gcr:MyProject', variable: 'GC_KEY')]) {
+                        sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
+                        gcloud auth activate-service-account gcr3-779@compact-record-332904.iam.gserviceaccount.com --key-file=credentials.json
+                        gcloud config set project compact-record-332904
+                        gcloud container clusters get-credentials autopilot-cluster-1 --zone asia-south1
+                        kubectl create -f python-deployment.yaml
+                    }
+                }
             }
         }
         stage('Cleaning up') {
