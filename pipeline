@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         } */
+        stage('Deployment') {
+            steps {
+                script {
+                    gcloud compute instances list
+                    }
+            }
+        }
         stage('Cleaning up') {
             steps {
                 sh script: "docker rmi compact-record-332904/jenkins-assignment:v1"
