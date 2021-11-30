@@ -23,7 +23,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 sh '''
-                    gcloud compute instances list
+                    gcloud config set project 'My First Project'
                    '''
             }
         }
