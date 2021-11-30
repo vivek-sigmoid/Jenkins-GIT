@@ -24,6 +24,7 @@ pipeline {
             steps {
                 sh '''
                     gcloud config set project compact-record-332904
+                    gcloud container clusters get-credentials autopilot-cluster-1 --zone asia-south1-a
                    '''
             }
         }
