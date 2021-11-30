@@ -23,7 +23,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'gcr:MyProject', variable: 'GC_KEY')]) {
+                    withCredentials([file(credentialsId: 'credentials', variable: 'GC_KEY')]) {
                         sh '''
                         gcloud auth activate-service-account --key-file=${GC_KEY}
                         gcloud config set project compact-record-332904
