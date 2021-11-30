@@ -11,7 +11,7 @@ pipeline {
                     }
                 }
         }
-        stage('Push') {
+        /* stage('Push') {
             steps{
                 script {
                     docker.withRegistry('https://asia.gcr.io', 'gcr:MyProject') {
@@ -19,7 +19,7 @@ pipeline {
                     }
                 }
             }
-        }
+        } */
         stage('Cleaning up') {
             steps {
                 sh script: "docker rmi asia.gcr.io/compact-record-332904/jenkins-assignment:v1"
