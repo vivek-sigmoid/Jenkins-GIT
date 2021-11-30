@@ -7,15 +7,16 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    DockerImage = docker.build("asia.gcr.io/compact-record-332904/jenkins-assignment" + ":v1")
+                    DockerImage = docker.build("compact-record-332904/jenkins-assignment" + ":v1")
                     }
                 }
         }
         stage('Push') {
             steps{
-                sh '''
-                pwd
-                '''
+                script {
+                    docker.withRegistry('https://asia.gcr.io', 'gcr:MyProject') {
+                    DockerImage.push()
+                }
             }
         }
         stage('Cleaning up') {
