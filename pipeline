@@ -26,8 +26,7 @@ pipeline {
                     withCredentials([file(credentialsId: 'credentials', variable: 'GC_KEY')]) {
                         sh '''
                         gcloud auth activate-service-account --key-file=${GC_KEY}
-                        gcloud config set project compact-record-332904
-                        gcloud container clusters get-credentials autopilot-cluster-1 --zone asia-south1
+                        gcloud container clusters get-credentials autopilot-cluster-1 --region asia-south1 --project compact-record-332904
                         kubectl create -f python-deployment.yaml
                         '''
                     }
