@@ -33,6 +33,15 @@ pipeline {
                 }
             }
         }
+        stage('list') {
+            steps {
+                sh '''
+                gcloud container images list --repository=gcr.io/global-memento-332706
+                kubectl get po
+                kubectl get deploy
+                '''
+                }
+        }
         stage('Cleaning up') {
             steps {
                 sh script: "docker rmi compact-record-332904/jenkins-assignment:v1"
