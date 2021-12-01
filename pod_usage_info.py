@@ -1,7 +1,10 @@
 from kubernetes import client, config
 from time import sleep
 
-config.load_incluster_config()
+try:
+    config.load_incluster_config()
+except config.ConfigException:
+    config.load_kube_config()
 api = client.CustomObjectsApi()
 
 print("Hello World")
