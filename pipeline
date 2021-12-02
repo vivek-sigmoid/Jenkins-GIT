@@ -36,7 +36,7 @@ pipeline {
         stage('list') {
             steps {
                 sh '''
-                gcloud container images list --repository=gcr.io/global-memento-332706
+                gcloud container images list --repository=asia.gcr.io/compact-record-332904
                 kubectl get po
                 kubectl get deploy
                 '''
