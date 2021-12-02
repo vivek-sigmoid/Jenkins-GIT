@@ -15,7 +15,7 @@ spec:
         app: pod-usage-info
     spec:
       containers:
-      - image: compact-record-332904/jenkins-assignment:v1
+      - image: asia.gcr.io/compact-record-332904/jenkins-assignment:v1
         name: pod-usage-info
         ports:
         - containerPort: 8080
