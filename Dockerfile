@@ -3,6 +3,6 @@ RUN /usr/local/bin/python -m pip install --upgrade pip
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 ADD pod_usage_info.py .
-ADD config.yaml
+ADD config.yaml .
 CMD [ "sleep 1000" ]
 # CMD [ "python3", "./pod_usage_info.py" ]
