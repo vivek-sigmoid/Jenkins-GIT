@@ -4,5 +4,5 @@ FROM python:3.9.9-alpine3.14
 # RUN pip install -r requirements.txt
 # ADD pod_usage_info.py .
 # ADD config.yaml .
-CMD [ "sleep 1000" ]
+CMD [ "/bin/bash" ]
 # CMD [ "python3", "./pod_usage_info.py" ]
