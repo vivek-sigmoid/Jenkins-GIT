@@ -27,7 +27,7 @@ pipeline {
                         sh '''
                         gcloud auth activate-service-account --key-file=${GC_KEY}
                         gcloud container clusters get-credentials cluster1 --zone asia-south1-a --project compact-record-332904
-                        kubectl create -f python-deployment.yaml
+                        kubectl create -f deployment.yaml
                         '''
                     }
                 }
