@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - image: asia.gcr.io/compact-record-332904/jenkins-assignment:v1
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         name: pod-usage-info
         ports:
         - containerPort: 8080
